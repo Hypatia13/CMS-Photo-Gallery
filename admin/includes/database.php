@@ -15,12 +15,18 @@ class Database {
 
     public function open_db_connection() {
 
-        $this->connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+        // $this->connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+        $this->connection = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 
         /* check connection*/   
-        if (mysqli_connect_errno()) {
-            die("Connect failed: ". mysqli_connect_error());
-            exit();
+
+        // if (mysqli_connect_errno()) { - using OOP now and calling object's methods
+            if($this->connection->connect_errno) { //returns an error code
+
+                // die("Connect failed: ". mysqli_connect_error());
+                die("Connect failed: ". $this->connection->connect_error); //Returns a string description of the last error
+
+                exit();
         }
         
         /* return name of current default database */
@@ -36,21 +42,32 @@ class Database {
     }
 
     public function query($sql) {
-        $result = mysqli_query($this->connection, $sql);
+        // $result = mysqli_query($this->connection, $sql);
+        $result = $this->connection->query($sql);
      
+        $this->confirm_query($result);
         return $result;
     }
 
 
     private function confirm_query($result) {
         if(!$result) {
-            die("DB Query failed");
+            // die("DB Query failed" . mysqli_error($this->connection));
+            die("DB Query failed" . $this->connection->error); //Returns a string description of the last error
         }
     }
 
     public function escape_string($string){
-        $escaped_string = mysqli_real_escape_string($this-> connection, $string);
+        // $escaped_string = mysqli_real_escape_string($this-> connection, $string);
+        $escaped_string = $this->connection->real_escape_string($string); //Escapes special characters in a string for use in an SQL statement
+
         return $escaped_string;
+    }
+
+
+    public function the_insert_id() {
+        // return mysqli_insert_id($this->connection); 
+        return $this->connection->insert_id; //Returns the auto generated id used in the latest query
     }
 }
 
