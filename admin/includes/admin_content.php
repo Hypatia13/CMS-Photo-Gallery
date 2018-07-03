@@ -16,7 +16,14 @@
             echo $user_found['username']; 
         */
         
-        
+
+        $user = new User();
+        $result_set = $user -> find_all_users();
+        while($row = mysqli_fetch_array($result_set)) {
+            echo $row['username'] . "<br>";
+        }
+        // $found_users = mysqli_fetch_array($result_set);
+
         ?>
         <ol class="breadcrumb">
             <li>
