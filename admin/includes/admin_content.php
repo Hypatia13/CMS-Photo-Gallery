@@ -17,8 +17,7 @@
         */
         
 
-             /* // Find all users
-
+             // Find all users
         // $user = new User(); - Instead of instantiating the object, will use static method instead
 
         $result_set = User::find_all_users();
@@ -26,18 +25,16 @@
          //Returns "Cannot use object of type mysqli_result as array", unless converting to an array first
         // echo $result_set[0]; 
         
-
         while($row = mysqli_fetch_array($result_set)) { //Fetch a result row as an associative/numeric array
             echo $row['username'] . "<br>";
         } 
-        */ 
        
 
             // Find a user by id
         $found_user = User::find_user_by_id(3);
 
         // echo $found_user['last_name']; //getting a certain value from an array, but need to assign array values to object properties instead
-        
+        $user = User::instantiation($found_user);
 
         echo $user -> first_name;
 
