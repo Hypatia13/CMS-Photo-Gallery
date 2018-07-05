@@ -5,7 +5,7 @@ require_once("config.php");
 
 class Database {
 
-    public $connection;
+    public $connection; //Keep it public, not private
 
     function __construct(){
 
@@ -15,10 +15,11 @@ class Database {
 
     public function open_db_connection() {
 
-        // $this->connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-        $this->connection = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+        // $this->connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME); //Procedural way
+        $this->connection = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME); //OOP way
 
-        /* check connection*/   
+
+             /* Check connection*/   
 
         // if (mysqli_connect_errno()) { - using OOP now and calling object's methods
             if($this->connection->connect_errno) { //returns an error code
@@ -42,8 +43,8 @@ class Database {
     }
 
     public function query($sql) {
-        // $result = mysqli_query($this->connection, $sql);
-        $result = $this->connection->query($sql);
+        // $result = mysqli_query($this->connection, $sql); //Procedural way
+        $result = $this->connection->query($sql); //OOP way
      
         $this->confirm_query($result);
         return $result;

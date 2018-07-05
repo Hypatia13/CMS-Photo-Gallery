@@ -9,7 +9,7 @@
         </h1>
 
         <?php
-         /*    //Testing DB query method
+         /*      //Testing DB query method
             $sql = "SELECT * FROM users WHERE id=1";
             $result = $database->query($sql);
             $user_found = mysqli_fetch_array($result);
@@ -17,12 +17,29 @@
         */
         
 
-        $user = new User();
-        $result_set = $user -> find_all_users();
-        while($row = mysqli_fetch_array($result_set)) {
+             /* // Find all users
+
+        // $user = new User(); - Instead of instantiating the object, will use static method instead
+
+        $result_set = User::find_all_users();
+        
+         //Returns "Cannot use object of type mysqli_result as array", unless converting to an array first
+        // echo $result_set[0]; 
+        
+
+        while($row = mysqli_fetch_array($result_set)) { //Fetch a result row as an associative/numeric array
             echo $row['username'] . "<br>";
-        }
-        // $found_users = mysqli_fetch_array($result_set);
+        } 
+        */ 
+       
+
+            // Find a user by id
+        $found_user = User::find_user_by_id(3);
+
+        // echo $found_user['last_name']; //getting a certain value from an array, but need to assign array values to object properties instead
+        
+
+        echo $user -> first_name;
 
         ?>
         <ol class="breadcrumb">
