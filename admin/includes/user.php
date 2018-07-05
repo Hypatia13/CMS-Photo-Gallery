@@ -52,6 +52,11 @@ class User {
         return $the_object;
     }
 
+    private function has_the_property($property) {
+        $object_properties = get_object_vars($this);
+        return array_key_exists($property, $object_properties);
+    }
+
 }
 
 ?>
