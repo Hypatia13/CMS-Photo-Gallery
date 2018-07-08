@@ -1,2 +1,2 @@
-# CMS---Photo-Gallery
+# CMS-Photo-Gallery
 Photo Gallery System using OOP
