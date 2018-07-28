@@ -21,9 +21,22 @@ class User {
         $result_set = $database->query("SELECT * FROM users WHERE id = $user_id LIMIT 1"); 
         //Replaced with a universal query instead */
 
-        $result_set = self::find_this_query("SELECT * FROM users WHERE id = $user_id LIMIT 1");
-        $found_user = mysqli_fetch_array($result_set); //Fetch a result row as an associative/numeric array
-        return $found_user; //An associative array (key-value pairs)
+        $the_result_array = self::find_this_query("SELECT * FROM users WHERE id = $user_id LIMIT 1");
+
+      /*   if(!empty($the_result_array)) {
+            $first_item = array_shift($the_result_array);
+            return $first_item;
+        }
+        else {
+            return false;
+        } */
+
+        // Using ternary operator instead
+        return !empty($the_result_array) ? array_shift($the_result_array) : false;
+
+
+
+        return $the_result_array; //??
     }
 
         //A universal query
