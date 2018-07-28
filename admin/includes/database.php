@@ -36,11 +36,14 @@ class Database {
                 printf("Default database is %s.\n", $row[0]);
                 $result->close();
 
+        */
+        
             //If connectivity problems, cause the port was changed to 3307
-            // $connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME,'3307','/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock');
-            // $dbconn = new mysqli('localhost:3307', "your username","your password", "your database name");
-        } */
-    }
+        /*  $connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME,'3307','/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock');
+            $dbconn = new mysqli('localhost:3307', "your username","your password", "your database name"); 
+        */
+        } 
+
 
     public function query($sql) {
         // $result = mysqli_query($this->connection, $sql); //Procedural way

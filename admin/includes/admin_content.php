@@ -34,30 +34,30 @@
        
 
         // New way using auto-instantiation
-        $users = User::find_all_users();
+        /* $users = User::find_all_users();
 
         foreach ($users as $user) {
             echo $user -> last_name . "<br>";
-        }
+        } */
 
             // Find a user by id
          
        // Old way 
 
-        /* $found_user = User::find_user_by_id(3);
+        $found_user = User::find_user_by_id(3);
 
         // echo $found_user['first_name']; 
         //getting a certain value from an array, but need to assign array values to object properties instead
         
         $user = User::instantiation($found_user);
         echo $user -> first_name;
- */
+
 
         // New way using auto-instantiation
-        $found_user = User::find_user_by_id(3);
-        echo $found_user -> username;
+       /*  $found_user = User::find_user_by_id(3);
+        echo $found_user -> username; */
 
-        
+
 
         ?>
         <ol class="breadcrumb">

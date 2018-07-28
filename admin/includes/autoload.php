@@ -1,7 +1,8 @@
 <?php
 
 function __autoload($class) {
-    $class = strtolower($class);
+    $class = strtolower($class); //not necessary, but makes it universal
+
     $the_path = "includes/{$class}.php";
 
     if(file_exists($the_path)) {
